@@ -55,11 +55,13 @@ resource "aws_s3_bucket_policy" "website" {
   })
 }
 
+# Render the template with variables
 data "template_file" "index" {
-  template = file("index.html")
+  template = file("${path.module}/templates/index.html.tpl")
+
   vars = {
-    title  = var.site_title
-    header = var.site_header
+    site_title    = var.site_title
+    site_header   = var.site_header
   }
 }
 

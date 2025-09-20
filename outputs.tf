@@ -27,3 +27,8 @@ output "route53_record_fqdn" {
   description = "FQDN of the Route53 record (if created)"
   value       = var.domain_name != "" ? aws_route53_record.website[0].fqdn : null
 }
+
+output "index_html_content" {
+  description = "Contents of the index.html file saved to the S3 bucket"
+  value       = data.template_file.index.rendered
+}
